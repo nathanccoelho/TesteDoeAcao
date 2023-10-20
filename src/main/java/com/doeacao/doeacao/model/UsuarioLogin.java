@@ -4,13 +4,14 @@ import java.time.LocalDate;
 
 public class UsuarioLogin {
 
-    private Long id;
+	private Long id;
     private String nome;
-    private String user;
+    private String usuario;
     private String senha;
     private String foto;
-    private LocalDate birthDate;
     private String token;
+    private LocalDate birthDate;
+    
 
     public Long getId() {
         return id;
@@ -20,15 +21,15 @@ public class UsuarioLogin {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
-    }
+    public String getUsuario() {
+		return usuario;
+	}
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 
-    public String getToken() {
+	public String getToken() {
         return token;
     }
 

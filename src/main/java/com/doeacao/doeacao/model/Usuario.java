@@ -28,17 +28,16 @@ public class Usuario {
 	
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotBlank (message = "O atributo nome é obrigatório!")
-	@Size (min=2, max =255, message = "O atributo nome deve conter no mínimo 2 e no máximo 255 catacteres!")
-	private String nome;
-	
-	@Schema(example = "email@email.com.br")
-	@NotBlank (message = "O atributo user é obrigatório!")
-	@Email
-	private String usuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull(message = "O Atributo Nome é Obrigatório!")
+    private String nome;
+
+    @Schema(example = "email@email.com.br")
+    @NotNull(message = "O Atributo Usuário é Obrigatório!")
+    @Email(message = "O Atributo Usuário deve ser um email válido!")
+    private String usuario;
 	
 	@CPF
 	private String cpf;
@@ -46,11 +45,12 @@ public class Usuario {
 	@CNPJ
 	private String cnpj;
 	
-	@NotBlank (message = "O atributo senha é obrigatório!")
-	private String senha;
-	
-	@Size (min=5, max =5000, message = "O atributo foto deve conter no mínimo 5 e no máximo 5000 catacteres!")
-	private String foto;
+	@NotBlank(message = "O Atributo Senha é Obrigatório!")
+    @Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
+    private String senha;
+
+    @Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
+    private String foto;
 	
 	@NotNull
 	private LocalDate birthDate;

@@ -16,18 +16,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name= "tb_postagens")
+@Table(name = "tb_postagens")
 public class Postagem {
-	
-	
-	
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotBlank (message = "O atributo titulo é obrigatório!")
-	@Size (min=2, max =255, message = "O atributo titulo deve conter no mínimo 2 e no máximo 255 catacteres!")
-	private String titulo;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "O atributo título é Obrigatório!")
+    @Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
+    private String titulo;
 	
 	@NotBlank (message = "O atributo conteudo é obrigatório!")
 	@Size (min=2, max =5000, message = "O atributo conteudo deve conter no mínimo 2 e no máximo 5000 catacteres!")
@@ -44,16 +42,16 @@ public class Postagem {
 	
 	
 	@UpdateTimestamp
-	private LocalDateTime data;
+    private LocalDateTime data;
 	
 	
 	@ManyToOne
-	@JsonIgnoreProperties("postagem")
-	private Tema tema;
-	
-	@ManyToOne
-	@JsonIgnoreProperties("postagem")
-	private Usuario usuario;
+    @JsonIgnoreProperties("postagem")
+    private Tema tema;
+
+    @ManyToOne
+    @JsonIgnoreProperties("postagem")
+    private Usuario usuario;
 
 
 	//Getters and Setters;
