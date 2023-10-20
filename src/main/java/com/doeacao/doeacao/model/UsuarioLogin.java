@@ -10,7 +10,7 @@ public class UsuarioLogin {
     private String senha;
     private String foto;
     private String token;
-    private LocalDate birthDate;
+    private LocalDate nascimento;
     
 
     public Long getId() {
@@ -37,12 +37,12 @@ public class UsuarioLogin {
         this.token = token;
     }
 
-	public LocalDate getBirthDate() {
-		return birthDate;
+	public LocalDate getNascimento() {
+		return nascimento;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
+	public void setNascimento(LocalDate nascimento) {
+		this.nascimento = nascimento;
 	}
 
 	public String getNome() {

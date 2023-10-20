@@ -53,7 +53,7 @@ public class Usuario {
     private String foto;
 	
 	@NotNull
-	private LocalDate birthDate;
+	private LocalDate nascimento;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
@@ -119,12 +119,13 @@ public class Usuario {
 		this.foto = foto;
 	}
 
-	public LocalDate getBirthDate() {
-		return birthDate;
+	
+	public LocalDate getNascimento() {
+		return nascimento;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
+	public void setNascimento(LocalDate nascimento) {
+		this.nascimento = nascimento;
 	}
 
 	public List<Postagem> getPostagem() {
