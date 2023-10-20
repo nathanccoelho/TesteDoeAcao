@@ -16,21 +16,21 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name= "tb_tema")
-public class Theme {
+@Table(name= "tb_temas")
+public class Tema {
 
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank (message = "O atributo description é obrigatório!")
-	@Size (min=2, max =255, message = "O atributo description deve conter no mínimo 2 e no máximo 255 catacteres!")
-	private String description;
+	@NotBlank (message = "O atributo descricao é obrigatório!")
+	@Size (min=2, max =255, message = "O atributo descricao deve conter no mínimo 2 e no máximo 255 catacteres!")
+	private String descricao;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "theme", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("theme")
-	private List<Post> post;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("tema")
+	private List<Postagem> postagem;
 
 	
 	
@@ -43,23 +43,19 @@ public class Theme {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public List<Post> getPost() {
-		return post;
+	public List<Postagem> getPostagem() {
+		return postagem;
 	}
 
-	public void setPost(List<Post> post) {
-		this.post = post;
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
 	}
-
-	
-	
-	
 }

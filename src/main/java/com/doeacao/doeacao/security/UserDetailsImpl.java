@@ -3,10 +3,10 @@ package com.doeacao.doeacao.security;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import com.doeacao.doeacao.model.User;
+import com.doeacao.doeacao.model.Usuario;
 
 
 public class UserDetailsImpl implements UserDetails {
@@ -18,9 +18,9 @@ private static final long serialVersionUID = 1L;
 	
 private List<GrantedAuthority> authorities;
 	
-	public UserDetailsImpl(User user) {
+	public UserDetailsImpl(Usuario user) {
 		this.userName = user.getUser();
-		this.password = user.getPassword();
+		this.password = user.getSenha();
 		
 		
 	}

@@ -15,39 +15,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doeacao.doeacao.model.User;
 import com.doeacao.doeacao.model.UserLogin;
-import com.doeacao.doeacao.repository.UserRepository;
+import com.doeacao.doeacao.model.Usuario;
+import com.doeacao.doeacao.repository.UsuarioRepository;
 import com.doeacao.doeacao.service.UserService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/usuarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class UserController {
+public class UsuarioController {
 	
 	@Autowired
 	private UserService userService;
 
 	@Autowired
-	private UserRepository userRepository;
+	private UsuarioRepository userRepository;
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<User>> getAll(){
+	public ResponseEntity<List<Usuario>> getAll(){
 		
 		return ResponseEntity.ok(userRepository.findAll());
 		
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getById(@PathVariable Long id) {
+	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
 		return userRepository.findById(id)
 			.map(resposta -> ResponseEntity.ok(resposta))
 			.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/logar")
 	public ResponseEntity<UserLogin> autenticarUser(@RequestBody Optional<UserLogin> userLogin){
 		
 		return userService.authenticateUser(userLogin)
@@ -55,8 +55,8 @@ public class UserController {
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
-	@PostMapping("/register")
-	public ResponseEntity<User> postUser(@RequestBody @Valid User user) {
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Usuario> postUser(@RequestBody @Valid Usuario user) {
 
 		return userService.registerUser(user)
 			.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
@@ -64,8 +64,8 @@ public class UserController {
 
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<User> putUser(@Valid @RequestBody User user) {	
+	@PutMapping("/atualizar")
+	public ResponseEntity<Usuario> putUser(@Valid @RequestBody Usuario user) {	
 		
 		return userService.updateUser(user)
 			.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))

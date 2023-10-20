@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.doeacao.doeacao.model.User;
-import com.doeacao.doeacao.repository.UserRepository;
+import com.doeacao.doeacao.model.Usuario;
+import com.doeacao.doeacao.repository.UsuarioRepository;
 
 
 @Service
@@ -19,12 +19,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UsuarioRepository userRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		
-		Optional<User> user = userRepository.findByUser(userName);
+		Optional<Usuario> user = userRepository.findByUsuario(userName);
 		
 		if(user.isPresent())
 			return new UserDetailsImpl(user.get());

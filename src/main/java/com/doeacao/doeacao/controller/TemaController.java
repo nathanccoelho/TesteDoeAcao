@@ -18,44 +18,44 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.doeacao.doeacao.model.Theme;
-import com.doeacao.doeacao.repository.ThemeRepository;
+import com.doeacao.doeacao.model.Tema;
+import com.doeacao.doeacao.repository.TemaRepository;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/themes")
+@RequestMapping("/temas")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class ThemeController {
+public class TemaController {
 	
 	@Autowired
-	private ThemeRepository themeRepository;
+	private TemaRepository themeRepository;
 	
 	@GetMapping
-	public ResponseEntity<List <Theme>> getAll() {
+	public ResponseEntity<List <Tema>> getAll() {
 		return ResponseEntity.ok(themeRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Theme> getById(@PathVariable Long id) {
+	public ResponseEntity<Tema> getById(@PathVariable Long id) {
 		return themeRepository.findById(id)
 				.map(response -> ResponseEntity.ok(response))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
-	@GetMapping("/description/{description}")
-	public ResponseEntity<List<Theme>> getByTitle (@PathVariable String description) {
-		return ResponseEntity.ok(themeRepository.findAllByDescriptionContainingIgnoreCase(description));
+	@GetMapping("/descricao/{descricao}")
+	public ResponseEntity<List<Tema>> getByTitle (@PathVariable String descricao) {
+		return ResponseEntity.ok(themeRepository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Theme> post(@Valid @RequestBody Theme theme){
+	public ResponseEntity<Tema> post(@Valid @RequestBody Tema theme){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(themeRepository.save(theme));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Theme> put(@Valid @RequestBody Theme theme) {
+	public ResponseEntity<Tema> put(@Valid @RequestBody Tema theme) {
 		return themeRepository.findById(theme.getId())
 				.map(response -> ResponseEntity.status(HttpStatus.CREATED)
 				.body(themeRepository.save(theme)))
@@ -65,7 +65,7 @@ public class ThemeController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Theme> theme = themeRepository.findById(id);
+		Optional<Tema> theme = themeRepository.findById(id);
 		
 		if (theme.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);

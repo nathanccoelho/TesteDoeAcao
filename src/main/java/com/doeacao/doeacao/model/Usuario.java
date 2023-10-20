@@ -23,20 +23,20 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_user")
-public class User {
+@Table(name = "tb_usuarios")
+public class Usuario {
 	
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank (message = "O atributo name é obrigatório!")
-	@Size (min=2, max =255, message = "O atributo name deve conter no mínimo 2 e no máximo 255 catacteres!")
-	private String name;
+	@NotBlank (message = "O atributo nome é obrigatório!")
+	@Size (min=2, max =255, message = "O atributo nome deve conter no mínimo 2 e no máximo 255 catacteres!")
+	private String nome;
 	
 	@Schema(example = "email@email.com.br")
-	@NotBlank (message = "O atributo email é obrigatório!")
+	@NotBlank (message = "O atributo user é obrigatório!")
 	@Email
 	private String user;
 	
@@ -46,18 +46,18 @@ public class User {
 	@CNPJ
 	private String cnpj;
 	
-	@NotBlank (message = "O atributo password é obrigatório!")
-	private String password;
+	@NotBlank (message = "O atributo senha é obrigatório!")
+	private String senha;
 	
-	@Size (min=5, max =5000, message = "O atributo pic deve conter no mínimo 5 e no máximo 5000 catacteres!")
-	private String pic;
+	@Size (min=5, max =5000, message = "O atributo foto deve conter no mínimo 5 e no máximo 5000 catacteres!")
+	private String foto;
 	
 	@NotNull
 	private LocalDate birthDate;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("user")
-	private List<Post> post;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Postagem> postagem;
 
 	
 
@@ -71,12 +71,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getUser() {
@@ -103,20 +103,20 @@ public class User {
 		this.cnpj = cnpj;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public String getPic() {
-		return pic;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setPic(String pic) {
-		this.pic = pic;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public LocalDate getBirthDate() {
@@ -127,12 +127,11 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public List<Post> getPost() {
-		return post;
+	public List<Postagem> getPostagem() {
+		return postagem;
 	}
 
-	public void setPost(List<Post> post) {
-		this.post = post;
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
 	}
-
 }
