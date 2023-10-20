@@ -19,7 +19,7 @@ private static final long serialVersionUID = 1L;
 private List<GrantedAuthority> authorities;
 	
 	public UserDetailsImpl(Usuario user) {
-		this.userName = user.getUser();
+		this.userName = user.getUsuario();
 		this.password = user.getSenha();
 		
 		

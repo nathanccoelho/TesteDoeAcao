@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.doeacao.doeacao.model.UserLogin;
+import com.doeacao.doeacao.model.UsuarioLogin;
 import com.doeacao.doeacao.model.Usuario;
 import com.doeacao.doeacao.repository.UsuarioRepository;
 import com.doeacao.doeacao.security.JwtService;
@@ -29,7 +29,7 @@ public class UserService {
 
     public Optional<Usuario> registerUser(Usuario user) {
 
-        if (userRepository.findByUsuario(user.getUser()).isPresent())
+        if (userRepository.findByUsuario(user.getUsuario()).isPresent())
             return Optional.empty();
 
         user.setSenha(encryptPassword(user.getSenha()));
@@ -42,7 +42,7 @@ public class UserService {
 
         if(userRepository.findById(user.getId()).isPresent()) {
 
-            Optional<Usuario> searchUser = userRepository.findByUsuario(user.getUser());
+            Optional<Usuario> searchUser = userRepository.findByUsuario(user.getUsuario());
 
             if ( (searchUser.isPresent()) && ( searchUser.get().getId() != user.getId()))
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists!", null);
@@ -57,7 +57,7 @@ public class UserService {
 
     }
 
-    public Optional<UserLogin> authenticateUser(Optional<UserLogin> userLogin) {
+    public Optional<UsuarioLogin> authenticateUser(Optional<UsuarioLogin> userLogin) {
 
         // Gera o Objeto de autenticação
         var credenciais = new UsernamePasswordAuthenticationToken(userLogin.get().getUser(), userLogin.get().getSenha());

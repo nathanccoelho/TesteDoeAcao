@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doeacao.doeacao.model.UserLogin;
+import com.doeacao.doeacao.model.UsuarioLogin;
 import com.doeacao.doeacao.model.Usuario;
 import com.doeacao.doeacao.repository.UsuarioRepository;
 import com.doeacao.doeacao.service.UserService;
@@ -48,7 +48,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/logar")
-	public ResponseEntity<UserLogin> autenticarUser(@RequestBody Optional<UserLogin> userLogin){
+	public ResponseEntity<UsuarioLogin> autenticarUser(@RequestBody Optional<UsuarioLogin> userLogin){
 		
 		return userService.authenticateUser(userLogin)
 				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))

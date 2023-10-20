@@ -38,7 +38,7 @@ public class Usuario {
 	@Schema(example = "email@email.com.br")
 	@NotBlank (message = "O atributo user é obrigatório!")
 	@Email
-	private String user;
+	private String usuario;
 	
 	@CPF
 	private String cpf;
@@ -79,12 +79,12 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getCpf() {
