@@ -10,7 +10,6 @@ public class UsuarioLogin {
     private String senha;
     private String foto;
     private String token;
-    private LocalDate nascimento;
     
 
     public Long getId() {
@@ -36,15 +35,6 @@ public class UsuarioLogin {
     public void setToken(String token) {
         this.token = token;
     }
-
-	public LocalDate getNascimento() {
-		return nascimento;
-	}
-
-	public void setNascimento(LocalDate nascimento) {
-		this.nascimento = nascimento;
-	}
-
 	public String getNome() {
 		return nome;
 	}
