@@ -16,10 +16,15 @@ public class Tema {
 
     @NotNull(message = "O Atributo Descrição é obrigatório")
     private String descricao;
+    
+    
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("tema")
     private List<Postagem> postagem;
-
+    
+    @ManyToOne
+    @JsonIgnoreProperties("tema")
+    private Usuario usuario;
 
 	
 	
@@ -46,5 +51,13 @@ public class Tema {
 
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
